@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using bit_api.DBModels;
 
 namespace bit_api
 {
@@ -27,6 +29,7 @@ namespace bit_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<GunContext>(opt => opt.UseInMemoryDatabase("GunList"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
