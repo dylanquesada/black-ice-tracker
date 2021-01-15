@@ -8,6 +8,17 @@ namespace bit_api.DBModels
         {
         }
 
-        public DbSet<Gun> Guns { get; set; }
+        public virtual DbSet<Gun> Guns { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("bit");
+            modelBuilder.Entity<Gun>(entity =>
+            {
+                entity.ToTable("gun");
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.gunName).HasColumnName("gun_name");
+            });
+        }
     }
 }

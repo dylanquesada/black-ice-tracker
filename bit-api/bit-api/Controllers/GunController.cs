@@ -27,12 +27,13 @@ namespace bit_api.Controllers
 
         [HttpGet]
         [Route("/api/guns")]
-        public async Task<ActionResult<IEnumerable<Gun>>> GetGuns()
+        public async Task<ActionResult<List<Gun>>> GetGuns()
         {
             List<Gun> gunsResponse = new List<Gun>();
             _logger.LogInformation("GET /api/guns API call");
             var guns = await _context.Guns.ToListAsync();
-            guns.ForEach(gun => gunsResponse.Add(Mappers.GunMappers.MapGunVm(gun)));return gunsResponse;
+            guns.ForEach(gun => gunsResponse.Add(Mappers.GunMappers.MapGunVm(gun)));
+            return gunsResponse;
         }
     }
 }

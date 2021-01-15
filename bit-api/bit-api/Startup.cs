@@ -29,7 +29,7 @@ namespace bit_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<GunContext>(opt => opt.UseInMemoryDatabase("GunList"));
+            services.AddDbContext<GunContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
