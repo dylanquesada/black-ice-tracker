@@ -39,11 +39,6 @@ To update:
 - save new PNG file
 - replace ```./repo-assets/images/architecture-diagram.png```
 
- ``DB Model``
-
-![db model diagram](./repo-assets/images/db-model.png)
-
-
 ``Web API``
 
 ``` 
