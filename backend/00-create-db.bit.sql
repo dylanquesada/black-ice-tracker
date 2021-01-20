@@ -1,3 +1,5 @@
+DROP DATABASE "bit" CASCADE;
+
 CREATE DATABASE bit;
  \connect bit;
 CREATE USER bit_user WITH PASSWORD 'password';
@@ -7,40 +9,27 @@ GRANT USAGE ON SCHEMA bit TO bit_user;
 
 
 CREATE SCHEMA bit;
-CREATE ROLE bit_admin WITH
+CREATE ROLE bit_user WITH
     PASSWORD 'password';
-GRANT SELECT ON ALL TABLES IN SCHEMA bit TO bit_admin;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA bit TO bit_admin;
-COMMIT;
+GRANT SELECT ON ALL TABLES IN SCHEMA bit TO bit_user;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA bit TO bit_user;
+COMMIT;
 
-
-ALTER ROLE "bit_admin" WITH LOGIN;
+ALTER ROLE "bit_user" WITH LOGIN;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Database: bit
 
--- DROP DATABASE "bit";
-
-CREATE DATABASE "bit"
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'C'
-    LC_CTYPE = 'C'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-	-- *************** SqlDBM: PostgreSQL ****************;
+-- *************** SqlDBM: PostgreSQL ****************;
 -- ***************************************************;
 
-DROP TABLE IF EXISTS "bit"."user";
-
-CREATE SCHEMA "bit";
+DROP TABLE IF EXISTS "bit"."user" CASCADE;
 
 -- ************************************** "bit"."user"
 
 CREATE TABLE "bit"."user"
 (
- "id"       uuid NOT NULL,
+ "id"       uuid DEFAULT uuid_generate_v1(),
  role     text NULL,
  email    text NOT NULL,
  username text NULL,
@@ -49,7 +38,7 @@ CREATE TABLE "bit"."user"
 
 -- ************************************** "bit".system
 
-DROP TABLE IF EXISTS "bit".system;
+DROP TABLE IF EXISTS "bit".system CASCADE;
 
 CREATE TABLE "bit".system
 (
@@ -60,12 +49,12 @@ CREATE TABLE "bit".system
 
 -- ************************************** "bit".game_profile
 
-DROP TABLE IF EXISTS "bit".game_profile;
+DROP TABLE IF EXISTS "bit".game_profile CASCADE;
 
 CREATE TABLE "bit".game_profile
 (
- "id"                    uuid NOT NULL,
- user_id               uuid NOT NULL,
+ "id"                    uuid DEFAULT uuid_generate_v1(),
+ user_id               uuid,
  system_id             integer NOT NULL,
  game_profile_username text NOT NULL,
  CONSTRAINT PK_game_profile PRIMARY KEY ( "id" ),
@@ -84,7 +73,7 @@ CREATE INDEX fkIdx_41 ON "bit".game_profile
 );
 
 
-DROP TABLE IF EXISTS "bit".gun;
+DROP TABLE IF EXISTS "bit".gun CASCADE;
 
 -- ************************************** "bit".gun
 
@@ -97,12 +86,12 @@ CREATE TABLE "bit".gun
 
 -- ************************************** "bit".skin_status
 
-DROP TABLE IF EXISTS "bit".skin_status;
+DROP TABLE IF EXISTS "bit".skin_status CASCADE;
 
 CREATE TABLE "bit".skin_status
 (
- "id"              uuid NOT NULL,
- game_profile_id uuid NOT NULL,
+ "id"              uuid DEFAULT uuid_generate_v1(),
+ game_profile_id uuid,
  gun_id          integer NOT NULL,
  status          text NULL,
  CONSTRAINT PK_owned_skins PRIMARY KEY ( "id" ),
