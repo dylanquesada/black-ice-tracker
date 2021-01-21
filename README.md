@@ -37,12 +37,7 @@ To update:
 - edit ```./repo-assets/architecture-diagram.drawio``` 
 - save draw.io file 
 - save new PNG file
-- replace ```./repo-assets/images/architecture-diagram.png````
-
- ``DB Model``
-
-![db model diagram](./repo-assets/images/db-model.png)
-
+- replace ```./repo-assets/images/architecture-diagram.png```
 
 ``Web API``
 

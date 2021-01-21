@@ -2,13 +2,13 @@ DROP DATABASE "bit" CASCADE;
 
 CREATE DATABASE bit;
  \connect bit;
+CREATE SCHEMA bit;
 CREATE USER bit_user WITH PASSWORD 'password';
 
 GRANT CONNECT ON DATABASE bit TO bit_user;
 GRANT USAGE ON SCHEMA bit TO bit_user;
 
 
-CREATE SCHEMA bit;
 CREATE ROLE bit_user WITH
     PASSWORD 'password';
 GRANT SELECT ON ALL TABLES IN SCHEMA bit TO bit_user;

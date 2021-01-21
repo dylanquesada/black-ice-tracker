@@ -5,6 +5,9 @@ project.lock.json
 *.pyc
 nupkg/
 
+#local data dir
+local-data
+
 # Visual Studio Code
 .vscode
 
