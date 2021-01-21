@@ -71,3 +71,6 @@ response:
         }
     ]
 }
+```
+## Low Fidelity Mockup 
+![low fidelity screen with many rectangles](./repo-assets/images/low-fidelity-mockup.png)
