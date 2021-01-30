@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import gunsApi from "./services/api/guns/guns.service";
 import { Gun } from "./core/types/models";
+import { GunList } from "./ui/components/gun-list/gun-list";
 
 interface IAppState {
   guns: Gun[];
@@ -36,7 +37,7 @@ class App extends React.Component<{}, IAppState> {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header container">
           <img src={logo} className="App-logo" alt="logo" />
           <a
             className="App-link"
@@ -46,9 +47,7 @@ class App extends React.Component<{}, IAppState> {
           >
             Learn React
           </a>
-          {this.state.guns.map((gun: Gun) => (
-            <li key={gun.id}>{gun.name}</li>
-          ))}
+          <GunList guns={this.state.guns}></GunList>
         </header>
       </div>
     );
