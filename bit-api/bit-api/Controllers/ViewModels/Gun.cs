@@ -1,10 +1,10 @@
 using System;
 
-namespace bit_api.DBModels
+namespace bit_api.Controllers.ViewModels
 {
     public class Gun
     {
         public int Id { get; set; }
-        public string gunName { get; set; }
+        public String Name { get; set; }
     }
 }

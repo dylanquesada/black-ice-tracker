@@ -1,10 +1,15 @@
-using System.Threading.Tasks;
 using System;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 using Microsoft.Extensions.Logging;
-
+using bit_api.Mappers;
+using bit_api.Controllers.ViewModels;
+using bit_api.Data.Entities;
+using bit_api.Data;
+using System.Linq;
 
 namespace bit_api.Controllers
 {
@@ -15,25 +20,24 @@ namespace bit_api.Controllers
     public class SkinRecordController : ControllerBase
     {
         private readonly ILogger _logger;
+        private readonly BitDbContext _context;
 
-        public SkinRecordController(ILogger<SkinRecordController> logger)
+        public SkinRecordController(BitDbContext context,
+            ILogger<GunController> logger)
         {
+            _context = context;
             _logger = logger;
         }
 
         [HttpGet]
         [Route("/api/skins/{Id}")]
-        public List<SkinRecord> GetSkinRecords(string Id)
+        public async Task<ActionResult<List<SkinRecord>>> GetSkinRecords(string Id)
         {
             _logger.LogInformation("GET /api/skins/{id} API call");
-            //Mock Impl
-            _logger.LogInformation("MOCK API Response");
             //TODO: refactor to not use 'SkinRecord' because it sounds weird.
-            SkinRecord p9 = new SkinRecord() { Id = 0, Status = "Owned" };
-            SkinRecord p12 = new SkinRecord() { Id = 1, Status = "Wants" };
-            SkinRecord r4c = new SkinRecord() { Id = 2, Status = "Owned" };
-            SkinRecord smg11 = new SkinRecord() { Id = 3, Status = "Owned" };
-            return new List<SkinRecord> { p9, p12, r4c, smg11 };
+            var records = await _context.SkinRecords.Where(e => e.GameProfileId.ToString().Equals(Id)).ToListAsync();
+            records.ForEach(record => Mappers.SkinRecordMapper.MapSkinRecordVm(record));
+            return Ok(records);
         }
     }
 }

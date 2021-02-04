@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using bit_api.DBModels;
+using bit_api.Data;
 
 namespace bit_api
 {
@@ -41,7 +41,7 @@ namespace bit_api
                     .AllowAnyMethod();
                 });
             });
-            services.AddDbContext<GunContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
+            services.AddDbContext<BitDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
