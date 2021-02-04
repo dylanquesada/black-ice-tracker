@@ -21,7 +21,7 @@ INSERT INTO bit.gun (id, gun_name) VALUES (17, 'GSH 18');
 INSERT INTO bit.gun (id, gun_name) VALUES (18, 'L85A2');
 INSERT INTO bit.gun (id, gun_name) VALUES (19, 'LFP586');
 INSERT INTO bit.gun (id, gun_name) VALUES (20, 'M1014');
-INSERT INTO bit.gun (id, gun_name) VALUES (21, 'M45 Meusoc');
+INSERT INTO bit.gun (id, gun_name) VALUES (21, 'M45 MEUSOC');
 INSERT INTO bit.gun (id, gun_name) VALUES (22, 'M590A1');
 INSERT INTO bit.gun (id, gun_name) VALUES (23, 'M870');
 INSERT INTO bit.gun (id, gun_name) VALUES (24, 'MP5');
