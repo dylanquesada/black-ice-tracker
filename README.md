@@ -1,5 +1,11 @@
 # black-ice-tracker
 
+## Release one of black ice tracker. MVP:
+
+* Users will be able to create account and log in
+* Users will be able to record which weapons they have black ice skin for, and which they want (on a given game profile) and see these selections on subsequent logins
+* Users will be able to have many game profiles associated with them
+
 ## Local Dev Setup 
 
 #### Frontend Project Setup
