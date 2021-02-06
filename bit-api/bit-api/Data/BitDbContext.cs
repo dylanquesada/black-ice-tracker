@@ -14,6 +14,8 @@ namespace bit_api.Data
         public virtual DbSet<SkinRecordModel> SkinRecords { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasPostgresExtension("uuid-ossp");
+
             modelBuilder.ApplyConfiguration(new GunTypeConfiguration());
             modelBuilder.ApplyConfiguration(new SkinRecordTypeConfiguration());
         }

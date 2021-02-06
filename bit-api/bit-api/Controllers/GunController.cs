@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using bit_api.Mappers;
 using bit_api.Controllers.ViewModels;
 using bit_api.Data.Entities;
 using bit_api.Data;
+
+using static bit_api.Common.ConversionUtils;
 
 namespace bit_api.Controllers
 {
@@ -34,7 +35,7 @@ namespace bit_api.Controllers
             List<Gun> gunsResponse = new List<Gun>();
             _logger.LogInformation("GET /api/guns API call");
             var guns = await _context.Guns.ToListAsync();
-            guns.ForEach(gun => gunsResponse.Add(Mappers.GunMappers.MapGunVm(gun)));
+            guns.ForEach(gun => gunsResponse.Add(Convert(gun)));
             return Ok(gunsResponse);
         }
     }
