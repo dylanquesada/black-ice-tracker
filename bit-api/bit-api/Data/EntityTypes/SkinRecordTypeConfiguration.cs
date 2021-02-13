@@ -10,10 +10,15 @@ namespace bit_api.Data.EntityTypes
         {
 
             builder.ToTable("skin_status", "bit");
-            builder.Property(e => e.Id).HasColumnName("id");
-            builder.Property(e => e.GameProfileId).HasColumnName("game_profile_id");
-            builder.Property(e => e.GunId).HasColumnName("gun_id");
-            builder.Property(e => e.StatusCode).HasColumnName("status");
+            builder.Property(e => e.Id)
+                .HasColumnName("id")
+                .HasDefaultValueSql("uuid_generate_v4()");
+            builder.Property(e => e.GameProfileId)
+                .HasColumnName("game_profile_id");
+            builder.Property(e => e.GunId)
+                .HasColumnName("gun_id");
+            builder.Property(e => e.StatusCode)
+                .HasColumnName("status");
 
         }
     }
