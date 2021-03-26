@@ -7,4 +7,5 @@ RUN npm run build
 
 # production environment
 FROM nginx:stable-alpine
+EXPOSE 80
 COPY --from=0 /bit-fe/build /usr/share/nginx/html
