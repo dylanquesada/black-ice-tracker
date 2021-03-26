@@ -1,0 +1,19 @@
+version: '3'
+services: 
+  bit-front-end:
+    build: 
+      context: ./bit-fe
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules
+      - ./bit-fe:/app
+  tests: 
+    build: 
+      context: ./bit-fe
+      dockerfile: Dockerfile.dev
+    volumes: 
+      - /app/node_modules
+      - ./bit-fe:/app
+    command: ["npm", "run", "test"]
