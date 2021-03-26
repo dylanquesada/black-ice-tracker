@@ -16,7 +16,7 @@ deploy:
   app: "black-ice-tracker"  
   env: "Blackicetracker-env"
   bucket_name: "elasticbeanstalk-us-east-2-645874864830"
-  bucket_peth: "black-ice-tracker"
+  bucket_path: "black-ice-tracker"
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
