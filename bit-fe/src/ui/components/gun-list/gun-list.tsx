@@ -14,11 +14,13 @@ export class GunList extends React.Component<GunListProps> {
     return (
       <Container>
         <Row>
-          {this.props.guns.map((gun: Gun) => (
-            <Col xs="12" md="4" lg="3">
-              <GunCard name={gun.name} id={gun.id}></GunCard>
-            </Col>
-          ))}
+          {this.props.guns.length
+            ? this.props.guns.map((gun: Gun) => (
+                <Col xs="12" md="4" lg="3">
+                  <GunCard name={gun.name} id={gun.id}></GunCard>
+                </Col>
+              ))
+            : "no guns found"}
         </Row>
       </Container>
     );

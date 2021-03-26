@@ -1,0 +1,23 @@
+language: generic 
+
+sudo: required
+services: 
+  - docker
+
+before_install: 
+  - docker build -t dylanquesada/black-ice-tracker -f ./bit-fe/Dockerfile.dev ./bit-fe
+
+script:
+  - docker run -e CI=true dylanquesada/black-ice-tracker npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "black-ice-tracker"  
+  env: "Blackicetracker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-645874864830"
+  bucket_peth: "black-ice-tracker"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
