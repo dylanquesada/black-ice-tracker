@@ -15,6 +15,14 @@
 4. run `npm start`, project should run locally at [localhost:3000](https:localhost:3000)
 
 #### DB Setup
+(Docker)
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop) locally
+2. Open bash / terminal at `/black-ice-tracker/backend`
+3. Run `docker build -t bit-db ./`
+4. Run `docker run -d --name bit-db-container -p 5432:5432 bit-db`
+(HINT: if you need to rebuild / restart container, you may need to remove it first `docker rm bit-db-container`)
+
+(non-docker)
 1. Install [postgresql](https://www.postgresql.org/download/) locally
 2. Install [pgadmin](https://www.pgadmin.org/download/) locally
 3. Open bash / terminal at `/black-ice-tracker/backend`
