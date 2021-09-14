@@ -20,6 +20,13 @@ local-data
 *.userosscache
 *.sln.docstates
 
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
