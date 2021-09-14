@@ -1,6 +1,6 @@
-DROP DATABASE "bit" CASCADE;
+--DROP DATABASE IF EXISTS "bit";
 
-CREATE DATABASE bit;
+-- CREATE DATABASE bit;
  \connect bit;
 CREATE SCHEMA bit;
 

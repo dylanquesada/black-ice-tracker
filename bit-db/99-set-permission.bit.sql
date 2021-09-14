@@ -6,8 +6,8 @@ GRANT CONNECT ON DATABASE bit TO bit_user;
 GRANT USAGE ON SCHEMA bit TO bit_user;
 
 
-CREATE ROLE bit_user WITH
-    PASSWORD 'password';
+-- CREATE ROLE bit_user WITH
+--     PASSWORD 'password';
 GRANT SELECT ON ALL TABLES IN SCHEMA bit TO bit_user;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA bit TO bit_user;
 COMMIT;
