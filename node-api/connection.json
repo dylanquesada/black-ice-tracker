@@ -1,0 +1,7 @@
+{
+  "host": "localhost",
+  "port": 5432,
+  "database": "bit",
+  "user": "bit_user",
+  "password": "password"
+}
