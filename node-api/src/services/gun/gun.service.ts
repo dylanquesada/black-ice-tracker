@@ -1,15 +1,13 @@
-const serviceDB = require("../../models/db");
+import BaseService from "../base/base.service";
+import { ModelStatic } from "../base/base.service";
 
-interface Gun {
-  Name: string;
-  Id: number;
+class GunService extends BaseService {
+  constructor(gun: ModelStatic) {
+    super(gun);
+    this.model = gun;
+  }
 }
 
-const getGunList = (): Gun[] => {
-  return serviceDB.models.gun.findAll().then((rows: Gun) => {
-    return rows;
-  });
-};
+module.exports = GunService;
 
-module.exports = getGunList;
-
+export {};
