@@ -1,7 +1,7 @@
 import axios from "axios";
 import { handleResponse, handleError } from "./response";
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "http://localhost:5001/api";
 
 const getAll = (resource: string) => {
   return axios

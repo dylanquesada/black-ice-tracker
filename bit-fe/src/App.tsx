@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
+import background from "../src/assets/images/header.jpeg";
 import "./App.css";
 import gunsApi from "./services/api/guns/guns.service";
 import { Gun } from "./core/types/models";
@@ -36,19 +36,9 @@ class App extends React.Component<{}, IAppState> {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header container">
-          <img src={logo} className="App-logo" alt="logo" />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <GunList guns={this.state.guns}></GunList>
-        </header>
+      <div className="App container">
+        <header className="App-header">Black Ice Tracker</header>
+        <GunList guns={this.state.guns}></GunList>
       </div>
     );
   }
