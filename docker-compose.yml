@@ -1,19 +1,40 @@
-version: '3'
-services: 
+version: '3.7'
+
+services:
+  ts-node-docker:
+    build:
+      context: ./node-api
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./node-api/src:/home/node/app/src
+      - ./node-api/nodemon.json:/home/node/app/nodemon.json
+    container_name: ts-node-docker
+    environment:
+      - DATABASE_HOST=postgres
+    expose:
+      - '5001'
+    ports:
+      - '5001:5001'
+    command: npm run dev
   bit-front-end:
-    build: 
+    build:
       context: ./bit-fe
       dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
-    volumes: 
+    volumes:
       - /app/node_modules
       - ./bit-fe:/app
-  tests: 
-    build: 
-      context: ./bit-fe
-      dockerfile: Dockerfile.dev
-    volumes: 
-      - /app/node_modules
-      - ./bit-fe:/app
-    command: ["npm", "run", "test"]
+  postgres:
+      image: postgres
+      restart: always
+      environment: 
+          - DATABASE_HOST=127.0.0.1
+          - POSTGRES_PASSWORD=password
+          - POSTGRES_DB=bit  
+      ports: 
+          - "5432:5432"
+      volumes: 
+          - ./bit-db/:/docker-entrypoint-initdb.d/
+    

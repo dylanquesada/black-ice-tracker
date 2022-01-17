@@ -1,5 +1,5 @@
 const { Sequelize } = require("sequelize");
-const connection = require("../../connection.json");
+const connection = require("./connection.json");
 const gun = require("../models/gun/gun.model");
 const skin = require("../models/skin/skin.model");
 const user = require("../models/user/user.model");
@@ -8,7 +8,7 @@ const profile = require("../models/profile/profile.model");
 const db = new Sequelize({
   database: connection.database,
   username: connection.user,
-  host: connection.host,
+  host: process.env['DATABASE_HOST'] || connection.host,
   port: connection.port,
   password: connection.password,
   dialect: "postgres",
